@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:45:39 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 06:49:49 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:42:23 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_error(t_error err, t_data *data)
 	else if (err == MUTEX_ERROR)
 		printf("Error: Mutex failed\n");
 	ft_free_data(data);
+	if (err == NONE)
+		exit(0);
 	exit(-1);
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:45:22 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 06:45:25 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 18:27:57 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_init(t_data *data)
 	{
 		data->philo[i].id = i;
 		data->philo[i].state = THINKING;
-		data->philo[i].last_meal.tv_sec = data->start.tv_sec;
-		data->philo[i].last_meal.tv_usec = data->start.tv_usec;
+		data->philo[i].last_meal.tv_sec = 0;
+		data->philo[i].last_meal.tv_usec = 0;
 		i++;
 	}
 	data->fork = ft_calloc(data->nb_philo + 1, sizeof(t_fork));
@@ -37,6 +37,7 @@ int	ft_init(t_data *data)
 	{
 		data->fork[i].id = i;
 		data->fork[i].used = FALSE;
+		pthread_mutex_init(&data->fork[i].mutex, NULL);
 		i++;
 	}
 	return (0);

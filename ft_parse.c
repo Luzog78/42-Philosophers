@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 01:21:48 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 07:30:34 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:46:42 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_fill_data(t_data *data, int ac, char **av)
 		data->nb_meal = ft_atoi(av[4]);
 	else
 		data->nb_meal = -1;
-	if (data->nb_philo < 2)
+	if (data->nb_philo < 1)
 		return (-1);
 	return (0);
 }
@@ -61,8 +61,7 @@ int	ft_parse(t_data *data, int ac, char **av)
 		|| (ac == 5 && ft_atoi(av[4]) == -1)
 		|| ft_fill_data(data, ac, av) == -1)
 	{
-		printf("Error: Invalid argument\n");
-		return (-1);
+		return (ARG_ERROR);
 	}
 	return (0);
 }

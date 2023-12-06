@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 07:37:29 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 19:21:18 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,18 @@ void	*ft_philo(void *arg)
 			ft_print_action(data, id, THINK);
 			fork_left = &data->fork[id];
 			fork_right = &data->fork[(id + 1) % data->nb_philo];
-			if (id % 2)
+
+			if (id % 2 == 0)
+				usleep(1000);
+			pthread_mutex_lock(&fork_left->mutex);
+			fork_left->used = TRUE;
+			ft_print_action(data, id, TAKE_LEFT_FORK);
+			if (data->nb_philo == 1)
+				usleep(data->time_to_die * 10000 + 10000);
+			pthread_mutex_lock(&fork_right->mutex);
+			fork_right->used = TRUE;
+			ft_print_action(data, id, TAKE_RIGHT_FORK);
+			/*if (id % 2)
 			{
 				pthread_mutex_lock(&fork_left->mutex);
 				fork_left->used = TRUE;
@@ -56,7 +67,7 @@ void	*ft_philo(void *arg)
 				pthread_mutex_lock(&fork_left->mutex);
 				fork_left->used = TRUE;
 				ft_print_action(data, id, TAKE_LEFT_FORK);
-			}
+			}*/
 			philo->state = EATING;
 			ft_print_action(data, id, EAT);
 			philo->last_meal = (struct timeval){ft_get_time(data), 0};
@@ -81,6 +92,7 @@ void	*ft_philo(void *arg)
 		{
 			if (ft_get_time(data) - philo->last_meal.tv_sec > data->time_to_sleep)
 			{
+				usleep(data->time_to_eat * 1000);
 				philo->state = THINKING;
 			}
 		}

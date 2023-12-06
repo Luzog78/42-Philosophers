@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 09:30:39 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 15:27:16 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ void		ft_print_broadcast(t_data *data, char *str);
 char const	*ft_print_get_nth(int nth);
 void		ft_print_timestamp(t_data *data);
 int			ft_start(t_data *data);
+void		ft_init_data(t_data *data);
 
 #endif

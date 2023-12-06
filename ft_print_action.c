@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:47:32 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 06:47:44 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 15:55:42 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_print_action(t_data *data, int id, t_action action)
 {
 	pthread_mutex_lock(&data->print_mutex);
 	ft_print_timestamp(data);
-	printf("Philosopher %d ", id);
+	printf("Philosopher %d ", id + 1);
 	if (action == JOIN)
 		printf("is joining the table");
 	else if (action == THINK)

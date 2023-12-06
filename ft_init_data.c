@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_data.c                                     :+:      :+:    :+:   */
+/*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 06:48:02 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 15:35:20 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
+/*   Updated: 2023/12/06 15:32:21 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_free_data(t_data *data)
+void	ft_init_data(t_data *data)
 {
-	int	i;
-
-	if (!data)
-		return ;
-	pthread_mutex_destroy(&data->print_mutex);
-	if (data->philo)
-		free(data->philo);
-	i = 0;
-	if (data->fork)
-	{
-		while (i < data->nb_philo)
-		{
-			pthread_mutex_destroy(&data->fork[i].mutex);
-			i++;
-		}
-		free(data->fork);
-	}
+	data->philo = NULL;
+	data->fork = NULL;
+	data->nb_philo = 0;
+	data->time_to_die = 0;
+	data->time_to_eat = 0;
+	data->time_to_sleep = 0;
+	pthread_mutex_init(&data->print_mutex, NULL);
 }

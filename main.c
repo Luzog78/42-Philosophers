@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 07:36:57 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 18:46:58 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,23 @@ int	main(int ac, char **av)
 	t_data	data;
 	t_error	err;
 
-	/*int ac = 5;
+	/*int ac = 6;
 	char *av[7] = {NULL};
-	av[1] = "4";
-	av[2] = "3000";
-	av[3] = "1000";
-	av[4] = "1000";
-	av[5] = "5";*/
+	av[1] = "1";
+	av[2] = "800";
+	av[3] = "200";
+	av[4] = "200";
+	av[5] = "7";*/
+	ft_init_data(&data);
 	if (ac < 5 || ac > 6)
 		return (ft_error(ARGC_ERROR, &data));
-	err = ft_parse(&data, ac - 1, av + 1) || ft_init(&data) || ft_start(&data);
+	err = ft_parse(&data, ac - 1, av + 1);
+	if (err != NONE)
+		return (ft_error(err, &data));
+	err = ft_init(&data);
+	if (err != NONE)
+		return (ft_error(err, &data));
+	err = ft_start(&data);
 	if (err != NONE)
 		return (ft_error(err, &data));
 	while (data.state != ENDED)
