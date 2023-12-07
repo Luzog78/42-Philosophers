@@ -6,28 +6,29 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 04:01:49 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 05:20:30 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_mandatory.h"
 
-void	ft_init(int ac, char **av, t_data *data)
+int	ft_init(int ac, char **av, t_data *data)
 {
 	t_error	err;
 
 	ft_init_data(data);
 	if (ac < 5 || ac > 6)
-		ft_error(ARGC_ERROR, data);
+		return (ft_error(ARGC_ERROR, data));
 	err = ft_parse(data, ac - 1, av + 1);
 	if (err != NONE)
-		ft_error(err, data);
+		return (ft_error(err, data));
 	err = ft_init_simulation(data);
 	if (err != NONE)
-		ft_error(err, data);
+		return (ft_error(err, data));
 	err = ft_start(data);
 	if (err != NONE)
-		ft_error(err, data);
+		return (ft_error(err, data));
+	return (0);
 }
 
 t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
@@ -64,7 +65,8 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = 0;
-	ft_init(ac, av, &data);
+	if (ft_init(ac, av, &data))
+		return (1);
 	while (data.state != ENDED)
 	{
 		if (!ft_main_thread(&data, 0, TRUE))

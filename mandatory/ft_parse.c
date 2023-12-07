@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 01:21:48 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 23:35:13 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 05:28:47 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_mandatory.h"
 
 static int	ft_atoi(const char *str)
 {

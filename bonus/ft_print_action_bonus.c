@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_action.c                                  :+:      :+:    :+:   */
+/*   ft_print_action_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:47:32 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 22:11:12 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 05:26:52 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 void	ft_print_action(t_data *data, int id, t_action action)
 {

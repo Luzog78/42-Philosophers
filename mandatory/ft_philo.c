@@ -6,23 +6,21 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 03:36:15 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 05:20:25 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_mandatory.h"
 
 void	ft_think(t_data *data, int id, t_philo *philo);
 void	ft_eat(t_data *data, int id, t_philo *philo);
-void	ft_sleep(t_data *data, int id, t_philo *philo);
+void	ft_sleep(t_data *data, t_philo *philo);
 
 void	*ft_philo(void *arg)
 {
 	t_data	*data;
 	int		id;
 	t_philo	*philo;
-	t_fork	*fork_left;
-	t_fork	*fork_right;
 
 	data = ((t_args *) arg)->data;
 	id = ((t_args *) arg)->id;
@@ -37,7 +35,7 @@ void	*ft_philo(void *arg)
 		else if (philo->state == EATING)
 			ft_eat(data, id, philo);
 		else if (philo->state == SLEEPING)
-			ft_sleep(data, id, philo);
+			ft_sleep(data, philo);
 		ft_usleep(USLEEP);
 	}
 	return (NULL);
@@ -93,7 +91,7 @@ void	ft_eat(t_data *data, int id, t_philo *philo)
 	}
 }
 
-void	ft_sleep(t_data *data, int id, t_philo *philo)
+void	ft_sleep(t_data *data, t_philo *philo)
 {
 	if (ft_get_time(data) - philo->last_meal > data->time_to_sleep)
 	{

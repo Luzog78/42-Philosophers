@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 04:03:08 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 05:52:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# define USLEEP	25
+# define USLEEP	10
 
 typedef unsigned int	t_ui;
 
@@ -33,10 +33,12 @@ typedef enum e_bool
 typedef enum e_error
 {
 	NONE = 0,
+	PROCESS_END = -1,
 	ARGC_ERROR,
 	ARG_ERROR,
 	MALLOC_ERROR,
 	THREAD_ERROR,
+	PROCESS_ERROR,
 	MUTEX_ERROR,
 }	t_error;
 
@@ -80,26 +82,7 @@ typedef struct s_philo
 	pthread_mutex_t	mutex;
 }	t_philo;
 
-typedef struct s_fork
-{
-	int				id;
-	t_bool			used;
-	pthread_mutex_t	mutex;
-}	t_fork;
-
-typedef struct s_data
-{
-	int				nb_philo;
-	t_ui			time_to_die;
-	t_ui			time_to_eat;
-	t_ui			time_to_sleep;
-	int				nb_meal;
-	t_fork			*fork;
-	t_philo			*philo;
-	pthread_mutex_t	print_mutex;
-	t_ui			start;
-	t_sim_state		state;
-}	t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_args
 {

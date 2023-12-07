@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_time.c                                      :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 06:46:05 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 23:31:48 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
+/*   Updated: 2023/12/07 05:54:25 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
-/**
- * @returns	The time in microseconds since the start of the simulation.
-*/
-t_ui	ft_get_time(t_data *data)
+# include "../core/philo.h"
+# include <semaphore.h>
+
+typedef struct s_data
 {
-	struct timeval	current;
+	int				nb_philo;
+	t_ui			time_to_die;
+	t_ui			time_to_eat;
+	t_ui			time_to_sleep;
+	int				nb_meal;
+	sem_t			forks_sem;
+	t_philo			*philo;
+	pthread_mutex_t	print_mutex;
+	t_ui			start;
+	t_sim_state		state;
+	int				pid;
+}	t_data;
 
-	gettimeofday(&current, NULL);
-	if (!data)
-		return (current.tv_sec * 1000000 + current.tv_usec);
-	return (current.tv_sec * 1000000 + current.tv_usec - data->start);
-}
+#endif
