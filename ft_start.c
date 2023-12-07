@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:29 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/05 06:44:34 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 22:09:51 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_start(t_data *data)
 {
-	int	i;
+	int		i;
 	t_args	*arg;
 
 	data->state = PENDING;

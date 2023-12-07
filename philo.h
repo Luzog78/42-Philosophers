@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 15:27:16 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/07 04:03:08 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# define USLEEP	0
+# define USLEEP	25
 
-typedef unsigned int		t_ui;
-typedef long long			t_ll;
-typedef unsigned long long	t_ull;
+typedef unsigned int	t_ui;
 
 typedef enum e_bool
 {
@@ -78,7 +76,8 @@ typedef struct s_philo
 	t_state			state;
 	pthread_t		thread;
 	int				nb_meal;
-	struct timeval	last_meal;
+	t_ui			last_meal;
+	pthread_mutex_t	mutex;
 }	t_philo;
 
 typedef struct s_fork
@@ -91,14 +90,14 @@ typedef struct s_fork
 typedef struct s_data
 {
 	int				nb_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	t_ui			time_to_die;
+	t_ui			time_to_eat;
+	t_ui			time_to_sleep;
 	int				nb_meal;
 	t_fork			*fork;
 	t_philo			*philo;
 	pthread_mutex_t	print_mutex;
-	struct timeval	start;
+	t_ui			start;
 	t_sim_state		state;
 }	t_data;
 
@@ -111,15 +110,17 @@ typedef struct s_args
 void		*ft_calloc(size_t count, size_t size);
 int			ft_error(t_error err, t_data *data);
 void		ft_free_data(t_data *data);
-int			ft_get_time(t_data *data);
-int			ft_init(t_data *data);
+t_ui		ft_get_time(t_data *data);
+void		ft_init_data(t_data *data);
+int			ft_init_simulation(t_data *data);
 int			ft_parse(t_data *data, int ac, char **av);
 void		*ft_philo(void *arg);
 void		ft_print_action(t_data *data, int id, t_action action);
 void		ft_print_broadcast(t_data *data, char *str);
 char const	*ft_print_get_nth(int nth);
 void		ft_print_timestamp(t_data *data);
+void		ft_reset_last_meal(t_data *data, t_philo *philo);
 int			ft_start(t_data *data);
-void		ft_init_data(t_data *data);
+void		ft_usleep(t_ui time);
 
 #endif

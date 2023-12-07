@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:45:39 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 17:42:23 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 22:42:45 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_error(t_error err, t_data *data)
 	if (err == ARGC_ERROR)
 	{
 		printf("Error: Wrong number of arguments\n");
-		printf("Usage: ./philo [%s] [%s] [%s] [%s] [%s]\n",
+		printf("Usage: ./philo <%s> <%s> <%s> <%s> [<%s>]\n",
 			"number_of_philosophers", "time_to_die", "time_to_eat",
 			"time_to_sleep", "number_of_meals");
 	}

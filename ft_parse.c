@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 01:21:48 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/06 17:46:42 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/06 23:35:13 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
 	if (str[i] != '\0' || nb > 2147483647)
 		return (-1);
@@ -40,9 +40,9 @@ static int	ft_atoi(const char *str)
 static int	ft_fill_data(t_data *data, int ac, char **av)
 {
 	data->nb_philo = ft_atoi(av[0]);
-	data->time_to_die = ft_atoi(av[1]);
-	data->time_to_eat = ft_atoi(av[2]);
-	data->time_to_sleep = ft_atoi(av[3]);
+	data->time_to_die = ft_atoi(av[1]) * 1000;
+	data->time_to_eat = ft_atoi(av[2]) * 1000;
+	data->time_to_sleep = ft_atoi(av[3]) * 1000;
 	if (ac == 5)
 		data->nb_meal = ft_atoi(av[4]);
 	else
