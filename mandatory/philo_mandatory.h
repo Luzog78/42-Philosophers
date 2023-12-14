@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:33:37 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/09 15:43:14 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct s_data
 	int				nb_meal;
 	t_fork			*fork;
 	t_philo			*philo;
-	pthread_mutex_t	print_mutex;
 	t_ui			start;
 	t_sim_state		state;
+	t_print_list	*print_list;
+	pthread_t		print_thread;
+	pthread_mutex_t	print_list_mutex;
 }	t_data;
 
 #endif

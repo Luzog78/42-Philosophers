@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:29 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:52:25 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/09 14:19:06 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	ft_start(t_data *data)
 		i++;
 	}
 	ft_print_broadcast(data, "Simulation started");
+	data->start = ft_get_time(NULL);
 	data->state = RUNNING;
 	return (0);
 }

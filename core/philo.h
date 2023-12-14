@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:52:15 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:15:32 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef enum e_bool
 
 typedef enum e_error
 {
-	NONE = 0,
-	PROCESS_END = -1,
+	NONE,
+	PROCESS_END,
 	ARGC_ERROR,
 	ARG_ERROR,
 	MALLOC_ERROR,
@@ -90,18 +90,30 @@ typedef struct s_args
 	int		id;
 }	t_args;
 
+typedef struct s_print_list
+{
+	int					id;
+	t_action			action;
+	t_ui				timestamp;
+	struct s_print_list	*next;
+}	t_print_list;
+
+void		ft_add_print_list(t_data *data, int id, t_action action, t_ui ms);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_error(t_error err, t_data *data);
 void		ft_free_data(t_data *data);
+void		ft_free_print_list(t_print_list **list);
 t_ui		ft_get_time(t_data *data);
 void		ft_init_data(t_data *data);
 int			ft_init_simulation(t_data *data);
 int			ft_parse(t_data *data, int ac, char **av);
 void		*ft_philo(void *arg);
-void		ft_print_action(t_data *data, int id, t_action action);
-void		ft_print_broadcast(t_data *data, char *str);
+void		ft_pop_print_list(t_print_list **list);
+void		*ft_print(void *arg);
+void		ft_print_action(t_data *data, t_print_list *print);
+void		ft_print_broadcast(t_data *data, char *str, t_ui timestamp);
 char const	*ft_print_get_nth(int nth);
-void		ft_print_timestamp(t_data *data);
+void		ft_print_timestamp(t_ui timestamp);
 void		ft_reset_last_meal(t_data *data, t_philo *philo);
 int			ft_start(t_data *data);
 void		ft_usleep(t_ui time);

@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_data.c                                     :+:      :+:    :+:   */
+/*   ft_add_print_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 06:48:02 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 16:40:01 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/09 15:09:43 by ysabik            #+#    #+#             */
+/*   Updated: 2023/12/09 17:14:27 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
 
-void	ft_free_data(t_data *data)
+void	ft_add_print_list(t_data *data, int id, t_action action, t_ui timestamp)
 {
-	int	i;
+	t_print_list	*tmp;
+	t_print_list	*last;
 
-	if (!data)
-		return ;
 	pthread_mutex_lock(&data->print_list_mutex);
-	ft_free_print_list(&data->print_list);
-	pthread_mutex_destroy(&data->print_list_mutex);
-	i = 0;
-	if (data->philo || data->fork)
+	tmp = ft_calloc(1, sizeof(t_print_list));
+	tmp->id = id;
+	tmp->action = action;
+	tmp->timestamp = timestamp;
+	tmp->next = NULL;
+	if (!data->print_list)
 	{
-		while (i < data->nb_philo)
-		{
-			if (data->philo)
-				pthread_mutex_destroy(&data->philo[i].mutex);
-			if (data->fork)
-				pthread_mutex_destroy(&data->fork[i].mutex);
-			i++;
-		}
-		if (data->philo)
-			free(data->philo);
-		if (data->fork)
-			free(data->fork);
+		data->print_list = tmp;
+		pthread_mutex_unlock(&data->print_list_mutex);
+		return ;
 	}
+	last = data->print_list;
+	while (last->next)
+		last = last->next;
+	last->next = tmp;
+	pthread_mutex_unlock(&data->print_list_mutex);
 }

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_data.c                                     :+:      :+:    :+:   */
+/*   ft_pop_print_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 16:08:37 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/09 15:09:43 by ysabik            #+#    #+#             */
+/*   Updated: 2023/12/09 15:46:51 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
-void	ft_init_data(t_data *data)
+void	ft_pop_print_list(t_print_list **list)
 {
-	data->philo = NULL;
-	data->fork = NULL;
-	data->nb_philo = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	data->print_list = NULL;
-	pthread_mutex_init(&data->print_list_mutex, NULL);
+	t_print_list	*tmp;
+
+	if (!list || !*list)
+		return ;
+	tmp = *list;
+	*list = (*list)->next;
+	free(tmp);
 }

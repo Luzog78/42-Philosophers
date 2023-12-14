@@ -6,7 +6,7 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2023/12/07 05:34:52 by ysabik           ###   ########.fr        #
+#    Updated: 2023/12/09 16:11:19 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ M_INCLUDES			= ./mandatory
 B_INCLUDES			= ./bonus
 CORE_INCLUDES		= ./core
 M_SRC_FILES			= \
+						mandatory/ft_add_print_list.c \
 						mandatory/ft_free_data.c \
 						mandatory/ft_get_time.c \
 						mandatory/ft_init_data.c \
@@ -26,6 +27,7 @@ M_SRC_FILES			= \
 						mandatory/ft_philo.c \
 						mandatory/ft_print_action.c \
 						mandatory/ft_print_broadcast.c \
+						mandatory/ft_print.c \
 						mandatory/ft_start.c \
 						mandatory/main.c
 B_SRC_FILES			= \
@@ -42,6 +44,8 @@ B_SRC_FILES			= \
 CORE_SRC_FILES		= \
 						core/ft_calloc.c \
 						core/ft_error.c \
+						core/ft_free_print_list.c \
+						core/ft_pop_print_list.c \
 						core/ft_print_get_nth.c \
 						core/ft_print_timestamp.c \
 						core/ft_reset_last_meal.c \

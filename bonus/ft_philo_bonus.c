@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:14:22 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/09 14:12:18 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_philo(void *arg)
 			ft_eat(data, id, philo);
 		else if (philo->state == SLEEPING)
 			ft_sleep(data, philo);
-		ft_usleep(USLEEP);
+		//ft_usleep(USLEEP);
 	}
 	return (NULL);
 }
@@ -50,7 +50,7 @@ void	ft_think(t_data *data, int id, t_philo *philo)
 		return ;
 	}
 	ft_print_action(data, id, THINK);
-	if (id % 2 == 0)
+	if (id % 2 == 0 && ft_get_time(data) < 1000)
 		ft_usleep(1000);
 	sem_wait(&data->forks_sem);
 	ft_print_action(data, id, TAKE_LEFT_FORK);

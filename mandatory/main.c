@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:20:30 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:17:21 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 		if (ft_get_time(data) - data->philo[i].last_meal > data->time_to_die
 			&& data->philo[i].state != FULL)
 		{
-			ft_print_action(data, i, DIE);
 			data->state = ENDED;
+			ft_add_print_list(data, i, DIE, ft_get_time(data));
+			pthread_join(data->print_thread, NULL);
 			return (FALSE);
 		}
 		pthread_mutex_lock(&data->philo[i].mutex);
@@ -52,8 +53,10 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 	}
 	if (all_full)
 	{
-		ft_print_broadcast(data, "All philosophers are full");
 		data->state = ENDED;
+		ft_print_broadcast(data, "All philosophers are full",
+			ft_get_time(data));
+		pthread_detach(data->print_thread);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -72,11 +75,11 @@ int	main(int ac, char **av)
 		if (!ft_main_thread(&data, 0, TRUE))
 			break ;
 	}
+	ft_print_broadcast(&data, "Simulation ended", ft_get_time(&data));
 	while (i < data.nb_philo)
 	{
 		pthread_detach(data.philo[i].thread);
 		i++;
 	}
-	ft_print_broadcast(&data, "Simulation ended");
 	return (ft_error(NONE, &data));
 }
