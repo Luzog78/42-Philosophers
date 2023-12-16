@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:31:42 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:50:09 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 # define USLEEP	10
 
-typedef long long	t_ll;
+typedef long long		t_ll;
+
+typedef struct s_data	t_data;
 
 typedef enum e_bool
 {
@@ -81,8 +83,6 @@ typedef struct s_philo
 	t_ll			last_meal;
 	pthread_mutex_t	mutex;
 }	t_philo;
-
-typedef struct s_data	t_data;
 
 typedef struct s_args
 {
