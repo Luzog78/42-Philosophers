@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 15:32:18 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:10:24 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 		{
 			data->state = ENDED;
 			ft_print_action(data, i, DIE);
-			pthread_join(data->print_thread, NULL);
 			return (FALSE);
 		}
 		pthread_mutex_lock(&data->philo[i].mutex);
@@ -56,7 +55,6 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 		data->state = ENDED;
 		ft_print_broadcast(data, "All philosophers are full",
 			ft_get_time(data));
-		pthread_detach(data->print_thread);
 		return (FALSE);
 	}
 	return (TRUE);

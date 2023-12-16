@@ -6,7 +6,7 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2023/12/16 15:38:23 by ysabik           ###   ########.fr        #
+#    Updated: 2023/12/16 16:10:00 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ M_SRC_FILES			= \
 						mandatory/ft_philo.c \
 						mandatory/ft_print_action.c \
 						mandatory/ft_print_broadcast.c \
-						mandatory/ft_print.c \
 						mandatory/ft_start.c \
 						mandatory/main.c
 B_SRC_FILES			= \
