@@ -6,35 +6,37 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:47:32 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 15:21:03 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:36:23 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
 
-void	ft_print_action(t_data *data, t_print_list *print)
+void	ft_print_action(t_data *data, int id, t_action action)
 {
-	ft_print_timestamp(print->timestamp);
-	printf("Philosopher %d ", print->id + 1);
-	if (print->action == JOIN)
+	pthread_mutex_lock(&data->print_list_mutex);
+	ft_print_timestamp(ft_get_time(data));
+	printf("Philosopher %d ", id + 1);
+	if (action == JOIN)
 		printf("is joining the table\n");
-	else if (print->action == THINK)
+	else if (action == THINK)
 		printf("is thinking\n");
-	else if (print->action == TAKE_LEFT_FORK)
+	else if (action == TAKE_LEFT_FORK)
 		printf("has taken his left fork\n");
-	else if (print->action == TAKE_RIGHT_FORK)
+	else if (action == TAKE_RIGHT_FORK)
 		printf("has taken his right fork\n");
-	else if (print->action == EAT)
-		printf("is eating  (%d%s meal)\n", data->philo[print->id].nb_meal + 1,
-			ft_print_get_nth(data->philo[print->id].nb_meal + 1));
-	else if (print->action == RELEASE_LEFT_FORK)
+	else if (action == EAT)
+		printf("is eating  (%d%s meal)\n", data->philo[id].nb_meal + 1,
+			ft_print_get_nth(data->philo[id].nb_meal + 1));
+	else if (action == RELEASE_LEFT_FORK)
 		printf("has released his left fork\n");
-	else if (print->action == RELEASE_RIGHT_FORK)
+	else if (action == RELEASE_RIGHT_FORK)
 		printf("has released his right fork\n");
-	else if (print->action == SLEEP)
+	else if (action == SLEEP)
 		printf("is sleeping\n");
-	else if (print->action == GET_FULL)
+	else if (action == GET_FULL)
 		printf("is full\n");
-	else if (print->action == DIE)
+	else if (action == DIE)
 		printf("died\n");
+	pthread_mutex_unlock(&data->print_list_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 16:08:37 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:35:02 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ void	ft_init_data(t_data *data)
 	data->time_to_die = 0;
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
-	data->print_list = NULL;
 	pthread_mutex_init(&data->print_list_mutex, NULL);
 }

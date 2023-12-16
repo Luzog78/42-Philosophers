@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/14 14:27:34 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:32:18 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 			&& data->philo[i].state != FULL)
 		{
 			data->state = ENDED;
-			ft_add_print_list(data, i, DIE, ft_get_time(data));
+			ft_print_action(data, i, DIE);
 			pthread_join(data->print_thread, NULL);
 			return (FALSE);
 		}
 		pthread_mutex_lock(&data->philo[i].mutex);
-		data->philo[i].last_meal += USLEEP;
+		//data->philo[i].last_meal += USLEEP;
 		pthread_mutex_unlock(&data->philo[i].mutex);
 		ft_usleep(USLEEP);
 		i++;

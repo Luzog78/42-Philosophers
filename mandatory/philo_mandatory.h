@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/14 14:28:12 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:36:50 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ typedef struct s_data
 	t_philo			*philo;
 	t_ll			start;
 	t_sim_state		state;
-	t_print_list	*print_list;
-	pthread_t		print_thread;
 	pthread_mutex_t	print_list_mutex;
 }	t_data;
 
