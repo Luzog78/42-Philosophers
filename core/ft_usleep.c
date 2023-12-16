@@ -6,13 +6,13 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:12:01 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 03:48:40 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:28:12 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_ui	ft_time(void)
+t_ll	ft_time(void)
 {
 	struct timeval	current;
 
@@ -20,9 +20,9 @@ t_ui	ft_time(void)
 	return (current.tv_sec * 1000000 + current.tv_usec);
 }
 
-void	ft_usleep(t_ui time)
+void	ft_usleep(t_ll time)
 {
-	t_ui	start;
+	t_ll	start;
 
 	start = ft_time();
 	while (ft_time() - start < time)

@@ -6,7 +6,7 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2023/12/09 16:11:19 by ysabik           ###   ########.fr        #
+#    Updated: 2023/12/16 14:21:50 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,11 @@ $(M_NAME) : $(CORE_OBJ_FILES) $(M_OBJ_FILES)
 	$(CC) $(CFLAGS) -o $(M_NAME) $(CORE_OBJ_FILES) $(M_OBJ_FILES) \
 		-I . -I $(CORE_INCLUDES) -I $(M_INCLUDES)
 
-bonus : $(CORE_OBJ_FILES) $(B_OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(B_NAME) $(CORE_OBJ_FILES) $(B_OBJ_FILES) \
-		-I . -I $(CORE_INCLUDES) -I $(B_INCLUDES)
+#bonus : $(CORE_OBJ_FILES) $(B_OBJ_FILES)
+#	$(CC) $(CFLAGS) -o $(B_NAME) $(CORE_OBJ_FILES) $(B_OBJ_FILES) \
+#		-I . -I $(CORE_INCLUDES) -I $(B_INCLUDES)
+bonus:
+	@echo "Bonus not implemented yet"
 
 .c.o :
 	$(CC) $(CFLAGS) -c $< -o $@

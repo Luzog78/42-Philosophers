@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 17:17:21 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:27:34 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ft_init(ac, av, &data))
 		return (1);
+	while (data.state == PENDING)
+		;
 	while (data.state != ENDED)
 	{
 		if (!ft_main_thread(&data, 0, TRUE))

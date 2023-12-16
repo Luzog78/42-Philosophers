@@ -6,18 +6,18 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:46:24 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 14:57:24 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:30:24 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_print_timestamp(t_ui timestamp)
+void	ft_print_timestamp(t_ll timestamp)
 {
 	int	ms;
 
 	ms = timestamp / 1000;
 	printf("[%02d:%02d:%02d:%03d] ", ms / 3600000, ms / 60000 % 60,
 		ms / 1000 % 60, ms % 1000);
-	//printf("[%09d] ", ms);
+	//printf("%09d ", ms);
 }

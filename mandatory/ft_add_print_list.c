@@ -6,13 +6,13 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:09:43 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 17:14:27 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:28:12 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
 
-void	ft_add_print_list(t_data *data, int id, t_action action, t_ui timestamp)
+void	ft_add_print_list(t_data *data, int id, t_action action, t_ll timestamp)
 {
 	t_print_list	*tmp;
 	t_print_list	*last;
