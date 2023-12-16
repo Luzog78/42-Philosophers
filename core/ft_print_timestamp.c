@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:46:24 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:16:45 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:21:39 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,5 @@ void	ft_print_timestamp(t_ll timestamp)
 	t_ll	ms;
 
 	ms = timestamp / 1000;
-	//printf("[%02lld:%02lld:%02lld:%03lld] ", ms / 3600000, ms / 60000 % 60,
-	//	ms / 1000 % 60, ms % 1000);
 	printf("%lld ", ms);
 }

@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 15:28:51 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:31:42 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			ft_parse(t_data *data, int ac, char **av);
 void		*ft_philo(void *arg);
 void		*ft_print(void *arg);
 void		ft_print_action(t_data *data, int id, t_action action);
-void		ft_print_broadcast(t_data *data, char *str, t_ll timestamp);
+void		ft_print_broadcast(t_data *data, char *str);
 char const	*ft_print_get_nth(int nth);
 void		ft_print_timestamp(t_ll timestamp);
 void		ft_reset_last_meal(t_data *data, t_philo *philo);
