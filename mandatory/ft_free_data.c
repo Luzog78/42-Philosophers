@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:48:02 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:29:19 by ysabik           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:28:41 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_free_data(t_data *data)
 
 	if (!data)
 		return ;
-	pthread_mutex_lock(&data->print_list_mutex);
-	pthread_mutex_destroy(&data->print_list_mutex);
+	pthread_mutex_lock(&data->print_mutex);
+	pthread_mutex_destroy(&data->print_mutex);
 	i = 0;
 	if (data->philo || data->fork)
 	{
