@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:57:10 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 06:25:14 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_philo(void *arg)
 	while (data->state == PENDING)
 		;
 	if (id % 2 == 0)
-		ft_usleep(1000);
+		ft_usleep(2000);
 	philo->state = THINKING;
 	while (data->state == RUNNING && philo->state != FULL)
 	{
@@ -39,7 +39,8 @@ void	*ft_philo(void *arg)
 			ft_eat(data, id, philo);
 		if (philo->state == SLEEPING)
 			ft_sleep(data, philo);
-		ft_usleep(USLEEP * 2);
+		if (philo->state != FULL)
+			ft_usleep(USLEEP);
 	}
 	return (NULL);
 }
@@ -62,7 +63,7 @@ static void	ft_think(t_data *data, int id, t_philo *philo)
 	fork_left->used = TRUE;
 	ft_print_action(data, id, TAKE_LEFT_FORK);
 	if (data->nb_philo == 1)
-		ft_usleep(data->time_to_die * 10 + 10000000);
+		ft_usleep(data->time_to_die + 1000);
 	pthread_mutex_lock(&fork_right->mutex);
 	fork_right->used = TRUE;
 	ft_print_action(data, id, TAKE_RIGHT_FORK);
@@ -87,6 +88,12 @@ static void	ft_eat(t_data *data, int id, t_philo *philo)
 		pthread_mutex_unlock(&fork_right->mutex);
 		fork_right->used = FALSE;
 		ft_print_action(data, id, RELEASE_RIGHT_FORK);
+		if (data->nb_meal != -1 && philo->nb_meal >= data->nb_meal)
+		{
+			ft_print_action(data, id, GET_FULL);
+			philo->state = FULL;
+			return ;
+		}
 		philo->state = SLEEPING;
 		ft_print_action(data, id, SLEEP);
 	}

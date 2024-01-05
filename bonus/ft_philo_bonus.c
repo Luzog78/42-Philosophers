@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/09 14:12:18 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 06:23:44 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_think(t_data *data, int id, t_philo *philo)
 	sem_wait(&data->forks_sem);
 	ft_print_action(data, id, TAKE_LEFT_FORK);
 	if (data->nb_philo == 1)
-		ft_usleep(data->time_to_die * 10 + 10000000);
+		ft_usleep(data->time_to_die + 100);
 	sem_wait(&data->forks_sem);
 	ft_print_action(data, id, TAKE_RIGHT_FORK);
 	philo->state = EATING;

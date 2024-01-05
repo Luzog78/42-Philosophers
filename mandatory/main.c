@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:41:12 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 06:08:11 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	main(int ac, char **av)
 	ft_print_broadcast(&data, "Simulation ended");
 	while (i < data.nb_philo)
 	{
-		pthread_detach(data.philo[i].thread);
+		pthread_mutex_unlock(&data.fork[i].mutex);
+		pthread_join(data.philo[i].thread, NULL);
 		i++;
 	}
 	return (ft_error(NONE, &data));

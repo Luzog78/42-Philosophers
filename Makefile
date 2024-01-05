@@ -6,12 +6,12 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2023/12/16 16:10:00 by ysabik           ###   ########.fr        #
+#    Updated: 2024/01/05 04:32:17 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC					= gcc
-CFLAGS				= -Werror -Wall -Wextra
+CFLAGS				= -Werror -Wall -Wextra -g
 M_NAME				= philo
 B_NAME				= philo_bonus
 M_INCLUDES			= ./mandatory
