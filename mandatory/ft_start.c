@@ -6,18 +6,20 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:29 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:32:07 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:40:51 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
+#include <stdio.h>
 
 int	ft_start(t_data *data)
 {
 	int		i;
 	t_args	*arg;
 
-	data->state = PENDING;
+	ft_set_data_state(data, PENDING);
+	data->start = ft_get_time(NULL);
 	i = 0;
 	while (i < data->nb_philo)
 	{
@@ -32,7 +34,6 @@ int	ft_start(t_data *data)
 		i++;
 	}
 	ft_print_broadcast(data, "Simulation started");
-	data->start = ft_get_time(NULL);
-	data->state = RUNNING;
+	ft_set_data_state(data, RUNNING);
 	return (0);
 }

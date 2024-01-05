@@ -6,11 +6,12 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 06:08:11 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 18:31:34 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
+#include <stdio.h>
 
 int	ft_init(int ac, char **av, t_data *data)
 {
@@ -35,28 +36,28 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 {
 	while (i < data->nb_philo)
 	{
-		if (data->philo[i].state != FULL)
+		if (ft_get_philo_state(&data->philo[i]) != FULL)
 			all_full = FALSE;
-		if (ft_get_time(data) - data->philo[i].last_meal > data->time_to_die
-			&& data->philo[i].state != FULL)
+		if (ft_get_time(data) - ft_get_last_meal(&data->philo[i]) > data->time_to_die
+			&& ft_get_philo_state(&data->philo[i]) != FULL)
 		{
 			ft_print_action(data, i, DIE);
-			data->state = ENDED;
+			ft_set_data_state(data, ENDED);
 			return (FALSE);
 		}
-		pthread_mutex_lock(&data->philo[i].mutex);
-		pthread_mutex_unlock(&data->philo[i].mutex);
 		ft_usleep(USLEEP);
 		i++;
 	}
 	if (all_full)
 	{
-		data->state = ENDED;
+		ft_set_data_state(data, ENDED);
 		ft_print_broadcast(data, "All philosophers are full");
 		return (FALSE);
 	}
 	return (TRUE);
 }
+
+// clear ; make re ; echo "" ; echo "      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" ; echo "" ; valgrind --tool=helgrind --track-lockorders=no --history-level=full -s -- ./philo 100 700 200 200 2
 
 int	main(int ac, char **av)
 {
@@ -66,9 +67,9 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ft_init(ac, av, &data))
 		return (1);
-	while (data.state == PENDING)
+	while (ft_get_data_state(&data) == PENDING)
 		;
-	while (data.state != ENDED)
+	while (ft_get_data_state(&data) != ENDED)
 	{
 		if (!ft_main_thread(&data, 0, TRUE))
 			break ;
@@ -76,7 +77,6 @@ int	main(int ac, char **av)
 	ft_print_broadcast(&data, "Simulation ended");
 	while (i < data.nb_philo)
 	{
-		pthread_mutex_unlock(&data.fork[i].mutex);
 		pthread_join(data.philo[i].thread, NULL);
 		i++;
 	}

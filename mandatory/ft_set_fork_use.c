@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_data.c                                     :+:      :+:    :+:   */
+/*   ft_set_fork_use.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 06:45:37 by ysabik           ###   ########.fr       */
+/*   Created: 2024/01/05 16:25:36 by ysabik            #+#    #+#             */
+/*   Updated: 2024/01/05 17:13:46 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
 
-void	ft_init_data(t_data *data)
+/**
+ * @param	use	0: not used, 1: used by left, 2: used by right
+ */
+void	ft_set_fork_use(t_fork *fork, int use)
 {
-	data->philo = NULL;
-	data->fork = NULL;
-	data->nb_philo = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	pthread_mutex_init(&data->state_mutex, NULL);
-	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_lock(&fork->var_mutex);
+	if (use == 1)
+	{
+		fork->used_by_left = TRUE;
+		fork->used_by_right = FALSE;
+	}
+	else if (use == 2)
+	{
+		fork->used_by_left = FALSE;
+		fork->used_by_right = TRUE;
+	}
+	else
+	{
+		fork->used_by_left = FALSE;
+		fork->used_by_right = FALSE;
+	}
+	pthread_mutex_unlock(&fork->var_mutex);
 }

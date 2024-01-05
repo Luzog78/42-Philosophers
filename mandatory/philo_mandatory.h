@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/17 13:28:41 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 17:07:10 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 typedef struct s_fork
 {
 	int				id;
-	t_bool			used;
+	t_bool			used_by_left;
+	t_bool			used_by_right;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	var_mutex;
 }	t_fork;
 
 typedef struct s_data
@@ -33,6 +35,7 @@ typedef struct s_data
 	t_philo			*philo;
 	t_ll			start;
 	t_sim_state		state;
+	pthread_mutex_t	state_mutex;
 	pthread_mutex_t	print_mutex;
 }	t_data;
 

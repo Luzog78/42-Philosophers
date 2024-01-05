@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_data.c                                     :+:      :+:    :+:   */
+/*   ft_set_philo_state.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 06:45:37 by ysabik           ###   ########.fr       */
+/*   Created: 2024/01/05 06:40:43 by ysabik            #+#    #+#             */
+/*   Updated: 2024/01/05 13:45:45 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_mandatory.h"
 
-void	ft_init_data(t_data *data)
+void	ft_set_philo_state(t_philo *philo, t_state state)
 {
-	data->philo = NULL;
-	data->fork = NULL;
-	data->nb_philo = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	pthread_mutex_init(&data->state_mutex, NULL);
-	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_lock(&philo->mutex);
+	philo->state = state;
+	pthread_mutex_unlock(&philo->mutex);
 }

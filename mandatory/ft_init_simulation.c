@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:45:22 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:20:22 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 17:10:58 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	ft_init_simulation(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i;
-		data->philo[i].state = THINKING;
-		data->philo[i].last_meal = 0;
 		data->fork[i].id = i;
-		data->fork[i].used = FALSE;
 		pthread_mutex_init(&data->philo[i].mutex, NULL);
 		pthread_mutex_init(&data->fork[i].mutex, NULL);
+		pthread_mutex_init(&data->fork[i].var_mutex, NULL);
+		ft_set_philo_state(&data->philo[i], THINKING);
+		ft_reset_last_meal(data, &data->philo[i]);
+		ft_set_fork_use(&data->fork[i], 0);
 		i++;
 	}
 	return (0);

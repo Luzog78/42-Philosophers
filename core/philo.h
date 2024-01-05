@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/16 16:50:09 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 17:15:17 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef long long		t_ll;
 
 typedef struct s_data	t_data;
+typedef struct s_fork	t_fork;
 
 typedef enum e_bool
 {
@@ -106,5 +107,12 @@ void		ft_print_timestamp(t_ll timestamp);
 void		ft_reset_last_meal(t_data *data, t_philo *philo);
 int			ft_start(t_data *data);
 void		ft_usleep(t_ll time);
+void	ft_set_data_state(t_data *data, t_sim_state state);
+t_sim_state	ft_get_data_state(t_data *data);
+void	ft_set_philo_state(t_philo *philo, t_state state);
+t_state	ft_get_philo_state(t_philo *philo);
+t_ll	ft_get_last_meal(t_philo *philo);
+int	ft_get_fork_use(t_fork *fork);
+void	ft_set_fork_use(t_fork *fork, int use);
 
 #endif

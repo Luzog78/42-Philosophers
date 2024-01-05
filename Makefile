@@ -6,7 +6,7 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2024/01/05 04:32:17 by ysabik           ###   ########.fr        #
+#    Updated: 2024/01/05 17:13:57 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ B_INCLUDES			= ./bonus
 CORE_INCLUDES		= ./core
 M_SRC_FILES			= \
 						mandatory/ft_free_data.c \
+						mandatory/ft_get_data_state.c \
+						mandatory/ft_get_fork_use.c \
+						mandatory/ft_get_last_meal.c \
+						mandatory/ft_get_philo_state.c \
 						mandatory/ft_get_time.c \
 						mandatory/ft_init_data.c \
 						mandatory/ft_init_simulation.c \
@@ -26,6 +30,9 @@ M_SRC_FILES			= \
 						mandatory/ft_philo.c \
 						mandatory/ft_print_action.c \
 						mandatory/ft_print_broadcast.c \
+						mandatory/ft_set_data_state.c \
+						mandatory/ft_set_fork_use.c \
+						mandatory/ft_set_philo_state.c \
 						mandatory/ft_start.c \
 						mandatory/main.c
 B_SRC_FILES			= \
