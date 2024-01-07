@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 06:45:37 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
 void	ft_init_data(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/07 07:29:23 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
 static void	ft_think(t_data *data, int id, t_philo *philo);
 static void	ft_eat(t_data *data, int id, t_philo *philo);

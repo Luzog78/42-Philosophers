@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:17:32 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 14:17:50 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
 t_sim_state	ft_get_data_state(t_data *data)
 {

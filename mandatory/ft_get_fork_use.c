@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:24:25 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/07 07:15:38 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
 int	ft_get_fork_use(t_fork *fork, t_bool use_mutex)
 {

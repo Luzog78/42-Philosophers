@@ -6,11 +6,11 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:25:36 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/07 07:16:07 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_mandatory.h"
+#include "philo.h"
 
 /**
  * @param	use	0: not used, 1: used by left, 2: used by right

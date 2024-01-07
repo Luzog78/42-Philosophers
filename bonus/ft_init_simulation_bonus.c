@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:45:22 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:53:22 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:49:36 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_init_simulation(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i;
-		data->philo[i].state = THINKING;
 		data->philo[i].last_meal = 0;
 		pthread_mutex_init(&data->philo[i].mutex, NULL);
+		ft_set_philo_state(&data->philo[i], THINKING);
 		i++;
 	}
 	return (0);

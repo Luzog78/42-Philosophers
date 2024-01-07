@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 06:23:44 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/05 14:05:48 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	*ft_philo(void *arg)
 	id = ((t_args *) arg)->id;
 	free(arg);
 	philo = &data->philo[id];
-	while (data->state == PENDING)
+	while (ft_get_data_state(data) == PENDING)
 		;
-	while (data->state == RUNNING && philo->state != FULL)
+	while (ft_get_data_state(data) == RUNNING && philo->state != FULL)
 	{
 		if (philo->state == THINKING)
 			ft_think(data, id, philo);
