@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:21 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 18:31:34 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:31:43 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 	{
 		if (ft_get_philo_state(&data->philo[i]) != FULL)
 			all_full = FALSE;
-		if (ft_get_time(data) - ft_get_last_meal(&data->philo[i]) > data->time_to_die
-			&& ft_get_philo_state(&data->philo[i]) != FULL)
+		if (ft_get_time(data) - ft_get_last_meal(&data->philo[i])
+			> data->time_to_die && ft_get_philo_state(&data->philo[i]) != FULL)
 		{
 			ft_print_action(data, i, DIE);
 			ft_set_data_state(data, ENDED);
@@ -57,7 +57,10 @@ t_bool	ft_main_thread(t_data *data, int i, t_bool all_full)
 	return (TRUE);
 }
 
-// clear ; make re ; echo "" ; echo "      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" ; echo "" ; valgrind --tool=helgrind --track-lockorders=no --history-level=full -s -- ./philo 100 700 200 200 2
+// clear ; make re ; echo "" ;
+// echo "      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" ; echo "" ;
+// valgrind --tool=helgrind --track-lockorders=no --history-level=full -s --
+// ./philo 100 700 200 200 2
 
 int	main(int ac, char **av)
 {

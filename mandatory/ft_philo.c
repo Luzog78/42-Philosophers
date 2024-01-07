@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 17:12:55 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:29:23 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	*ft_philo(void *arg)
 		usleep(USLEEP);
 	if (id % 2 == 0)
 		ft_usleep(2000);
-	ft_set_philo_state(philo, THINKING);
-	while (ft_get_data_state(data) == RUNNING && ft_get_philo_state(philo) != FULL)
+	while (ft_get_data_state(data) == RUNNING
+		&& ft_get_philo_state(philo) != FULL)
 	{
 		if (ft_get_philo_state(philo) == THINKING)
 			ft_think(data, id, philo);
@@ -48,16 +48,20 @@ void	*ft_philo(void *arg)
 
 static void	*ft_clear_philo(t_data *data, int id)
 {
-	if (ft_get_fork_use(&data->fork[id]) == 2)
+	pthread_mutex_lock(&data->fork[id].var_mutex);
+	if (ft_get_fork_use(&data->fork[id], FALSE) == 2)
 	{
 		pthread_mutex_unlock(&data->fork[id].mutex);
-		ft_set_fork_use(&data->fork[id], 0);
+		ft_set_fork_use(&data->fork[id], 0, FALSE);
 	}
-	if (ft_get_fork_use(&data->fork[(id + 1) % data->nb_philo]) == 1)
+	pthread_mutex_unlock(&data->fork[id].var_mutex);
+	pthread_mutex_lock(&data->fork[(id + 1) % data->nb_philo].var_mutex);
+	if (ft_get_fork_use(&data->fork[(id + 1) % data->nb_philo], FALSE) == 1)
 	{
 		pthread_mutex_unlock(&data->fork[(id + 1) % data->nb_philo].mutex);
-		ft_set_fork_use(&data->fork[(id + 1) % data->nb_philo], 0);
+		ft_set_fork_use(&data->fork[(id + 1) % data->nb_philo], 0, FALSE);
 	}
+	pthread_mutex_unlock(&data->fork[(id + 1) % data->nb_philo].var_mutex);
 	return (NULL);
 }
 
@@ -76,12 +80,12 @@ static void	ft_think(t_data *data, int id, t_philo *philo)
 	fork_left = &data->fork[id];
 	fork_right = &data->fork[(id + 1) % data->nb_philo];
 	pthread_mutex_lock(&fork_left->mutex);
-	ft_set_fork_use(fork_left, 2);
+	ft_set_fork_use(fork_left, 2, TRUE);
 	ft_print_action(data, id, TAKE_LEFT_FORK);
 	if (data->nb_philo == 1)
 		ft_usleep(data->time_to_die + 100);
 	pthread_mutex_lock(&fork_right->mutex);
-	ft_set_fork_use(fork_right, 1);
+	ft_set_fork_use(fork_right, 1, TRUE);
 	ft_print_action(data, id, TAKE_RIGHT_FORK);
 	ft_set_philo_state(philo, EATING);
 	ft_print_action(data, id, EAT);
@@ -99,10 +103,10 @@ static void	ft_eat(t_data *data, int id, t_philo *philo)
 		fork_right = &data->fork[(id + 1) % data->nb_philo];
 		philo->nb_meal++;
 		pthread_mutex_unlock(&fork_left->mutex);
-		ft_set_fork_use(fork_left, 0);
+		ft_set_fork_use(fork_left, 0, TRUE);
 		ft_print_action(data, id, RELEASE_LEFT_FORK);
 		pthread_mutex_unlock(&fork_right->mutex);
-		ft_set_fork_use(fork_right, 0);
+		ft_set_fork_use(fork_right, 0, TRUE);
 		ft_print_action(data, id, RELEASE_RIGHT_FORK);
 		if (data->nb_meal != -1 && philo->nb_meal >= data->nb_meal)
 		{

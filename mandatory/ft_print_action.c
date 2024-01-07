@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:47:32 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/05 17:17:17 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/07 07:30:30 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	ft_switch(t_data *data, int id, t_action action)
 	else if (action == THINK)
 		printf("is thinking");
 	else if (action == TAKE_LEFT_FORK || action == TAKE_RIGHT_FORK)
-		printf("has taken a fork (%s)", action == TAKE_LEFT_FORK ? "Left" : "Right");
+		printf("has taken a fork");
 	else if (action == RELEASE_LEFT_FORK || action == RELEASE_RIGHT_FORK)
-		printf("has released a fork (%s)", action == RELEASE_LEFT_FORK ? "Left" : "Right");
+		printf("has released a fork");
 	else if (action == EAT)
 		printf("is eating (%d%s meal)", data->philo[id].nb_meal + 1,
 			ft_print_get_nth(data->philo[id].nb_meal + 1));
