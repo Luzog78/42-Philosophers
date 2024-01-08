@@ -6,21 +6,30 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/08 16:10:04 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/08 17:27:58 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <semaphore.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <signal.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # define USLEEP	10
+
+# define FORKS_SEM	"forks"
+# define PRINT_SEM	"print"
+# define FULLS_SEM	"fulls"
+# define START_SEM	"start"
+# define DIES_SEM	"dies"
 
 typedef long long		t_ll;
 
@@ -77,21 +86,10 @@ typedef struct s_philo
 {
 	int				id;
 	t_state			state;
-	pthread_t		thread;
+	pthread_t		death_thread;
 	int				nb_meal;
 	t_ll			last_meal;
-	pthread_mutex_t	mutex;
 }	t_philo;
-
-
-typedef struct s_fork
-{
-	int				id;
-	t_bool			used_by_left;
-	t_bool			used_by_right;
-	pthread_mutex_t	mutex;
-	pthread_mutex_t	var_mutex;
-}	t_fork;
 
 typedef struct s_data
 {
@@ -100,12 +98,14 @@ typedef struct s_data
 	t_ll			time_to_eat;
 	t_ll			time_to_sleep;
 	int				nb_meal;
-	t_fork			*fork;
-	t_philo			*philo;
+	int				*philo_pids;
 	t_ll			start;
 	t_sim_state		state;
-	pthread_mutex_t	state_mutex;
-	pthread_mutex_t	print_mutex;
+	pthread_t		death_waiter;
+	pthread_t		full_waiter;
+	t_bool			is_main_process;
+	t_philo			philo;
+	t_bool			can_print;
 }	t_data;
 
 typedef struct s_args
@@ -121,7 +121,7 @@ t_ll		ft_get_time(t_data *data);
 void		ft_init_data(t_data *data);
 int			ft_init_simulation(t_data *data);
 int			ft_parse(t_data *data, int ac, char **av);
-void		*ft_philo(void *arg);
+void		ft_philo(t_data *data);
 void		*ft_print(void *arg);
 void		ft_print_action(t_data *data, int id, t_action action);
 void		ft_print_broadcast(t_data *data, char *str);
@@ -135,7 +135,6 @@ t_sim_state	ft_get_data_state(t_data *data);
 void		ft_set_philo_state(t_philo *philo, t_state state);
 t_state		ft_get_philo_state(t_philo *philo);
 t_ll		ft_get_last_meal(t_philo *philo);
-int			ft_get_fork_use(t_fork *fork, t_bool use_mutex);
-void		ft_set_fork_use(t_fork *fork, int use, t_bool use_mutex);
+void	ft_kill(t_data *data);
 
 #endif

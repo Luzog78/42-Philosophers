@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_data_bonus.c                               :+:      :+:    :+:   */
+/*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:26:09 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 04:59:08 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/08 17:28:23 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
 void	ft_init_data(t_data *data)
 {
-	data->philo = NULL;
+	data->philo_pids = NULL;
 	data->nb_philo = 0;
 	data->time_to_die = 0;
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
-	pthread_mutex_init(&data->print_mutex, NULL);
+	data->is_main_process = TRUE;
+	data->can_print = TRUE;
 }

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_free_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 03:07:18 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/14 14:28:12 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/05 06:48:02 by ysabik            #+#    #+#             */
+/*   Updated: 2024/01/08 16:14:22 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_BONUS_H
-# define PHILO_BONUS_H
+#include "philo.h"
 
-# include "../core/philo.h"
-# include <semaphore.h>
-
-typedef struct s_data
+void	ft_free_data(t_data *data)
 {
-	int				nb_philo;
-	t_ll			time_to_die;
-	t_ll			time_to_eat;
-	t_ll			time_to_sleep;
-	int				nb_meal;
-	sem_t			forks_sem;
-	t_philo			*philo;
-	pthread_mutex_t	print_mutex;
-	t_ll			start;
-	t_sim_state		state;
-	int				pid;
-}	t_data;
-
-#endif
+	if (!data)
+		return ;
+	if (data->philo_pids)
+		free(data->philo_pids);
+}

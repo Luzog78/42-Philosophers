@@ -6,7 +6,7 @@
 #    By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 04:09:47 by ysabik            #+#    #+#              #
-#    Updated: 2024/01/07 07:44:44 by ysabik           ###   ########.fr        #
+#    Updated: 2024/01/08 16:18:11 by ysabik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,16 +41,22 @@ M_SRC_FILES			= \
 						mandatory/ft_usleep.c \
 						mandatory/main.c
 B_SRC_FILES			= \
-						bonus/ft_free_data_bonus.c \
-						bonus/ft_get_time_bonus.c \
-						bonus/ft_init_data_bonus.c \
-						bonus/ft_init_simulation_bonus.c \
-						bonus/ft_parse_bonus.c \
-						bonus/ft_philo_bonus.c \
-						bonus/ft_print_action_bonus.c \
-						bonus/ft_print_broadcast_bonus.c \
-						bonus/ft_start_bonus.c \
-						bonus/main_bonus.c
+						bonus/ft_calloc.c \
+						bonus/ft_error.c \
+						bonus/ft_free_data.c \
+						bonus/ft_get_time.c \
+						bonus/ft_init_data.c \
+						bonus/ft_init_simulation.c \
+						bonus/ft_kill.c \
+						bonus/ft_parse.c \
+						bonus/ft_philo.c \
+						bonus/ft_print_action.c \
+						bonus/ft_print_broadcast.c \
+						bonus/ft_print_get_nth.c \
+						bonus/ft_print_timestamp.c \
+						bonus/ft_start.c \
+						bonus/ft_usleep.c \
+						bonus/main.c
 						
 M_OBJ_FILES			= $(M_SRC_FILES:.c=.o)
 B_OBJ_FILES			= $(B_SRC_FILES:.c=.o)
@@ -60,11 +66,10 @@ all : $(M_NAME)
 $(M_NAME) : $(M_OBJ_FILES)
 	$(CC) $(CFLAGS) -o $(M_NAME) $(M_OBJ_FILES) -I . -I $(M_INCLUDES)
 
-#bonus : $(CORE_OBJ_FILES) $(B_OBJ_FILES)
-#	$(CC) $(CFLAGS) -o $(B_NAME) $(CORE_OBJ_FILES) $(B_OBJ_FILES) \
-#		-I . -I $(CORE_INCLUDES) -I $(B_INCLUDES)
-bonus:
-	@echo "Bonus not implemented yet"
+bonus : $(B_OBJ_FILES)
+	$(CC) $(CFLAGS) -o $(B_NAME) $(B_OBJ_FILES) -I . -I $(B_INCLUDES)
+#bonus:
+#	@echo "Bonus not implemented yet"
 
 .c.o :
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_data_bonus.c                               :+:      :+:    :+:   */
+/*   ft_print_timestamp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 06:48:02 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:04:50 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/05 06:46:24 by ysabik            #+#    #+#             */
+/*   Updated: 2023/12/16 16:21:39 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
-void	ft_free_data(t_data *data)
+void	ft_print_timestamp(t_ll timestamp)
 {
-	int	i;
+	t_ll	ms;
 
-	if (!data)
-		return ;
-	sem_close(&data->forks_sem);
-	pthread_mutex_destroy(&data->print_mutex);
-	i = 0;
-	if (data->philo)
-	{
-		while (i < data->nb_philo)
-		{
-			pthread_mutex_destroy(&data->philo[i].mutex);
-			i++;
-		}
-		free(data->philo);
-	}
+	ms = timestamp / 1000;
+	printf("%lld ", ms);
 }

@@ -6,7 +6,7 @@
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 06:44:54 by ysabik            #+#    #+#             */
-/*   Updated: 2024/01/07 07:40:15 by ysabik           ###   ########.fr       */
+/*   Updated: 2024/01/08 13:49:38 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	*ft_philo(void *arg)
 	if (id % 2 == 0)
 		ft_usleep(2000);
 	while (ft_get_data_state(data) == RUNNING
-		&& ft_get_philo_state(philo) != FULL)
+		&& state = philo->state != FULL)
 	{
-		if (ft_get_philo_state(philo) == THINKING)
+		if (state = philo->state == THINKING)
 			ft_think(data, id, philo);
-		if (ft_get_philo_state(philo) == EATING)
+		if (state = philo->state == EATING)
 			ft_eat(data, id, philo);
-		if (ft_get_philo_state(philo) == SLEEPING)
+		if (state = philo->state == SLEEPING)
 			ft_sleep(data, philo);
-		if (ft_get_philo_state(philo) != FULL)
+		if (state = philo->state != FULL)
 			ft_usleep(USLEEP);
 	}
 	return (ft_clear_philo(data, id));

@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_broadcast_bonus.c                         :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysabik <ysabik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 06:46:39 by ysabik            #+#    #+#             */
-/*   Updated: 2023/12/07 05:27:40 by ysabik           ###   ########.fr       */
+/*   Created: 2023/12/06 23:12:01 by ysabik            #+#    #+#             */
+/*   Updated: 2024/01/08 16:13:04 by ysabik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
-void	ft_print_broadcast(t_data *data, char *str)
+t_ll	ft_time(void)
 {
-	pthread_mutex_lock(&data->print_mutex);
-	ft_print_timestamp(data);
-	printf(">> %s <<\n", str);
-	pthread_mutex_unlock(&data->print_mutex);
+	struct timeval	current;
+
+	gettimeofday(&current, NULL);
+	return (current.tv_sec * 1000000 + current.tv_usec);
+}
+
+void	ft_usleep(t_ll time)
+{
+	t_ll	start;
+
+	start = ft_time();
+	while (ft_time() - start < time)
+		usleep(30);
 }
